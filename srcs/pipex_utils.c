@@ -6,11 +6,21 @@
 /*   By: mlavergn <mlavergn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:05:21 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/11/04 21:59:57 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/11/04 22:31:40 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+
+void	ft_error(int retur)
+{
+	if (retur == -1)
+	{
+		write(2, strerror(errno), ft_strlen(strerror(errno)));
+		write(2, "\n", 1);
+		exit(1);
+	}
+}
 
 void	parse_arg(int ac)
 {
