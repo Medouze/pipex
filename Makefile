@@ -6,7 +6,7 @@
 #    By: mlavergn <mlavergn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/04 16:52:57 by mlavergn          #+#    #+#              #
-#    Updated: 2024/11/04 16:58:46 by mlavergn         ###   ########.fr        #
+#    Updated: 2024/11/04 17:05:17 by mlavergn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME 	= pipex
 CC 		= gcc
 CFLAGS 	= -Werror -Wall -Wextra -fsanitize=address
 RM 		= rm -rf
-SRCS 	= srcs/pipex.c ft_printf/libftprintf.a
+SRCS 	= srcs/pipex.c srcs/pipex_utils.c ft_printf/libftprintf.a
 
 $(NAME) :
 	make all -C ft_printf
