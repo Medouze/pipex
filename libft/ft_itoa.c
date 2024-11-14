@@ -6,28 +6,28 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 23:00:52 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/07 17:55:55 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/03 23:38:41 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	nbr_len(long n)
+static int	nbr_len(long nbr)
 {
 	size_t	len;
 
 	len = 0;
-	if (n == 0)
+	if (nbr == 0)
 		return (1);
-	if (n < 0)
+	if (nbr < 0)
 	{
 		len++;
-		n = -n;
+		nbr = -nbr;
 	}
-	while (n > 0)
+	while (nbr > 0)
 	{
 		len++;
-		n /= 10;
+		nbr /= 10;
 	}
 	return (len);
 }

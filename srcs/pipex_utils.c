@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:05:21 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/11/04 22:31:40 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:08:43 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,6 @@ void	ft_error(int retur)
 	{
 		write(2, strerror(errno), ft_strlen(strerror(errno)));
 		write(2, "\n", 1);
-		exit(1);
-	}
-}
-
-void	parse_arg(int ac)
-{
-	if (ac != 5)
-	{
-		ft_printf("Format argument should be <file cmd cmd file>\n");
 		exit(1);
 	}
 }
@@ -72,7 +63,7 @@ char	*check_cmd(char *cmd, char **envp)
 
 	all_paths = ft_split(get_env("PATH", envp), ':');
 	if (!all_paths)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (all_paths[i])
 	{
@@ -89,4 +80,29 @@ char	*check_cmd(char *cmd, char **envp)
 	}
 	free_path(all_paths);
 	return (NULL);
+}
+
+void	exec_cmd(char *av, char **envp)
+{
+	char	**cmd;
+	char	*path;
+	
+	cmd = ft_split(av, ' ');
+	if (ft_strchr(cmd[0], '/'))
+	{
+		if (access(cmd[0], F_OK | X_OK) == -1)
+		{
+				free_path(cmd);
+				exit(EXIT_FAILURE);
+		}
+		path = ft_strdup(cmd[0]);
+	}
+	else
+		path = check_cmd(cmd[0], envp);
+	if (execve(path, cmd, envp) == -1)
+	{
+		free_path(cmd);
+		free(path);
+		exit(EXIT_FAILURE);
+	}
 }
