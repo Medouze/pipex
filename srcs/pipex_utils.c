@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:05:21 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/11/14 16:08:43 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:14:48 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,14 @@ void	exec_cmd(char *av, char **envp)
 {
 	char	**cmd;
 	char	*path;
-	
+
 	cmd = ft_split(av, ' ');
 	if (ft_strchr(cmd[0], '/'))
 	{
 		if (access(cmd[0], F_OK | X_OK) == -1)
 		{
-				free_path(cmd);
-				exit(EXIT_FAILURE);
+			free_path(cmd);
+			exit(EXIT_FAILURE);
 		}
 		path = ft_strdup(cmd[0]);
 	}
